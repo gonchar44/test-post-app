@@ -2,6 +2,7 @@
   <div class="post-c">
     <PostHeader />
     <Images />
+    <PostInfo />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default {
   components: {
     PostHeader: () => import('./PostHeader'),
     Images: () => import('./Images'),
+    PostInfo: () => import('./PostInfo'),
   },
   setup() {
     store.dispatch('fetchPhotos');
