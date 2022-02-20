@@ -1,5 +1,6 @@
 <template>
   <div class="post-c">
+    <PostHeader />
     <Images />
   </div>
 </template>
@@ -10,6 +11,7 @@ import store from '../store';
 export default {
   name: 'Post',
   components: {
+    PostHeader: () => import('./PostHeader'),
     Images: () => import('./Images'),
   },
   setup() {
