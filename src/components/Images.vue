@@ -7,14 +7,16 @@
     <div class="images-control__slider"
          v-touch:swipe="swipeHandler"
     >
-      <ArrowBtn class="arrow-btn-left"
-                type="left"
-                @click.native="slideImg('prev')"
-      />
-      <ArrowBtn class="arrow-btn-right"
-                type="right"
-                @click.native="slideImg('next')"
-      />
+      <template v-if="photos.length">
+        <ArrowBtn class="arrow-btn-left"
+                  type="left"
+                  @click.native="slideImg('prev')"
+        />
+        <ArrowBtn class="arrow-btn-right"
+                  type="right"
+                  @click.native="slideImg('next')"
+        />
+      </template>
       <div class="images-control__slider-item"
            v-for="(img, imgIndex) in photos"
            :style="[imgIndex === 0 ? { marginLeft: slidesPosition } : null]"
