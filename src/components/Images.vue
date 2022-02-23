@@ -7,17 +7,19 @@
     <div class="images-control__slider"
          v-touch:swipe="swipeHandler"
     >
-      <ArrowBtn class="arrow-btn-left"
-                type="left"
-                @click.native="slideImg('prev')"
-      />
-      <ArrowBtn class="arrow-btn-right"
-                type="right"
-                @click.native="slideImg('next')"
-      />
+      <template v-if="photos.length">
+        <ArrowBtn class="arrow-btn-left"
+                  type="left"
+                  @click.native="slideImg('prev')"
+        />
+        <ArrowBtn class="arrow-btn-right"
+                  type="right"
+                  @click.native="slideImg('next')"
+        />
+      </template>
       <div class="images-control__slider-item"
            v-for="(img, imgIndex) in photos"
-           :style="[imgIndex === 0 ? { marginLeft: slidesPosition } : null]"
+           :style="[getSliderItemPosition(imgIndex, slidesPosition)]"
            :key="img.id"
       >
         <img :class="[
@@ -37,25 +39,25 @@
 </template>
 
 <script>
-  import { usePhotos } from '../use/photos';
-  import { useSwiperControl } from '../use/swiperControl';
+import { usePhotos } from '../use/photos';
+import { useSwiperControl } from '../use/swiperControl';
 
-  export default {
-    name: 'Images',
-    components: {
-      Loader: () => import('./Loader'),
-      ArrowBtn: () => import('./ArrowBtn'),
-      SwiperLine: () => import('./SwiperLine'),
-    },
-    setup() {
-      const { photos } = usePhotos();
+export default {
+  name: 'Images',
+  components: {
+    Loader: () => import('./Loader'),
+    ArrowBtn: () => import('./ArrowBtn'),
+    SwiperLine: () => import('./SwiperLine'),
+  },
+  setup() {
+    const { photos } = usePhotos();
 
-      return {
-        ...usePhotos(),
-        ...useSwiperControl(photos),
-      };
-    },
-  }
+    return {
+      ...usePhotos(),
+      ...useSwiperControl(photos),
+    };
+  },
+}
 </script>
 
 <style>

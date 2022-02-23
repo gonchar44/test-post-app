@@ -43,13 +43,20 @@ export function useSwiperControl(photos) {
       : slideImg('prev');
   };
 
+  const getSliderItemPosition = (imgIndex, slidesPosition) => {
+    return imgIndex === 0
+      ? { marginLeft: slidesPosition }
+      : null;
+  };
+
   return {
     currentPhoto,
     swiperPosition,
     swiperPositionPercent,
+    slidesPosition,
+    getSliderItemPosition,
     getImgClass,
     getThinImgClass,
-    slidesPosition,
     slideImg,
     swipeHandler,
   };
